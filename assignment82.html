@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html xmlns = "http://www.w3.org/1999/xhtml">
+<head>
+
+    <title>Untitled Document</title>
+
+    <meta http-equiv = "Content-Type" content = "text/html; charset = utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+
+
+    <link rel = "stylesheet" type = "text/css" href = "#" />
+    <!--Add your .css file-->
+
+
+
+    <style type="text/css">
+
+    </style>
+    <!--  Internal css link -->
+
+    <script src = "http://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+
+    <script type = "text/javascript" src = "#"></script>
+
+    <!--Add Your External jQuery Plugin-->
+
+
+
+    <script type = "text/javascript" lang="javascript">
+
+
+    </script>
+    <!--  Internal jquery/javascript link-->
+
+</head>
+
+
+<body>
+<h1>HTML FORM</h1><br>
+        <!--this is a div for creating front page visibility-->
+        <div id="main-front-page" style="visibility:visible;">
+            <button id="btnLogin">Login</button>
+            <button id="btnSignUp">SignUp</button>
+        </div>
+        <!--this is a div for login with email and password in this div visibility is hidden initially and later manipulated by jquery-->
+        <div id="Login-page" style="visibility:visible;">
+            Login
+            <form id="Form-login">
+                <input id="Login-email" type="email" placeholder="email">
+                <br/>
+                 <input id="Login-password" type="password" placeholder="password">
+                <br/>
+                 <input id="btnSubmitLogin" type="submit">
+            </form>
+            <span id="LoginErrMsg"></span>
+            <button id="btnBackLogin">Back</button>
+        </div>
+        <!--this is a div for sign up with name,email and password-->
+        <div id="SignUp-page" style="visibility:visible;">
+        SignUp
+            <form id="Form-SignUp">
+            
+                <input id="Sign-up-name" type="text" placeholder="name"><br/>
+                <input id="Sign-up-email" type="email" placeholder="email"><br/>
+                <input id="Sign-up-password" type="password" placeholder="password"><br/>
+                <input id="btnsubmitSignUp" type="submit">
+            </form>
+            <button id="btnBackSignUp">Back</button>
+        </div>
+        <!--this is a div for welcome page on successful login-->
+        <div id="Welcome-page" style="visibility:visible;">
+        <span id="Welcome-span">Welcome to</span>
+            <span id="Welcome-name"></span>
+            <button id="btnLogOut">LogOut</button>
+        </div>
+
+
+
+
+
+
+
+
+<script type="text/javascript">
+<!--start of jquery and javascript-->
+// click of logout button in welcome page,redirect to main page
+$("#btnLogOut").on("click",function(){
+    $("#main-front-page").css("visibility","visible");
+    $("#main-front-page").show();
+    $("#welcome-page").css("visibility","hidden");
+    $("#welcome-page").hide();
+    
+});
+//on clicking of submit button in login page
+$("#btnsubmitlogin").on("click",function(event){
+    event.preventDefault();
+    var SignedUp-email=localStorage.getItem("email");
+    //alert("email enter at signUp=+SignUp-email);
+    var SignedUp-password=localStorage.getItem("password");
+    //alert("email enter by user=+document.getElementById("Login-email).value.trim());
+    //alert("login password enter by user="+document.getElementById("login-password").value.trim());
+    if(document.getElementById("login-email").value.trim()==SignedUp-email.trim())&&(document.getElementById("login-password").value.trim()==Signedup-password.trim()){
+        //if both email and pass enter at login time matches then login is successful
+        alert("Login successful")
+        //logged-in=true;
+        $("#welcome-page").css("visibility","visible");
+        $("#welcome-page").show();
+        $("#welcome-page").textlocalstorage.getItem("SignedUpName");
+        $("#welcome-page").show();
+        //hide other pages
+        $("#main-front-page").css("visibility","hidden");
+        $("#main-front-page").hide();
+        $("#login-page").css("visibility","hidden");
+        $("#login-page").hide();
+        $("#SignUp-page").css("visibility","hidden");
+        $("#signUp-page").hide();
+        
+        
+    }//end if successful login
+    else{
+        //login failed
+        alert("login failed")
+        $("#login-page #loginErrMsg").text("loginId or password incorrect");
+        //show error message
+        $("#login-page").show();
+        $("#main-front-page").hide();
+        $("#signUp-page").hide();
+        $("#Welcome-page").hide();
+    }
+    
+});
+//on click of login button show login div and hide other
+$("#btnLogin").on("click" ,function(){
+    $("#main-front-page").css("visibility","hidden");
+    $("#main-front-page").hide();
+    $("#login-page").css("visibility","visible");
+    $("#login-page").show();
+});
+//back button click
+$("#btnbackSignup").on("click",function(){
+    $("#main-front-page").css("visibility","visible");
+    $("#main-front-page").show();
+    $("#login-page").css("visibility","hidden");
+    $("#login-page").hide();
+    $("#login-page").css("visibility","hidden");
+    $("#SignUp-page").hide();
+});
+//signup button from main page
+$("#btnSignUp").on("click" ,function(){
+    $("#main-front-page").css("visibility","hidden");
+    $("#main-front-page").hide();
+    $("#SignUp-page").css("visibility","visible");
+    $("#signUp-page").show();
+});
+    //submit button
+$("#btnSubmitSignUp").on("click",function(){
+    localStorage.setItem("SignedUpName",$("#Sign-up-name").val());
+    localStorage.setItem("email",$("#Sign-up-email").val());
+    localStorage.setItem("password",$("#Sign-up-password").val());
+    $("#main-front-page").css("visibility","visible");
+    $("#main-front-page").show();
+    $("#login-page").css("visibility","hide");
+    $("#login-page").hide();
+    
+});
+    
+    
+    
+    
+
+
+
+</script>
+
+
+</body>
+
+</html>
